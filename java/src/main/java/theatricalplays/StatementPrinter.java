@@ -18,7 +18,7 @@ public class StatementPrinter {
 
         for (var aPerformance : invoice.performances) {
             this.plays = plays;
-            var play = getPlay(this.plays, aPerformance);
+            var play = getPlay(aPerformance);
             var thisAmount = 0;
 
             thisAmount = amountFor(aPerformance, play);
@@ -36,8 +36,8 @@ public class StatementPrinter {
         return result;
     }
 
-    private static Play getPlay(Map<String, Play> plays, Performance aPerformance) {
-        return plays.get(aPerformance.playID);
+    private Play getPlay(Performance aPerformance) {
+        return this.plays.get(aPerformance.playID);
     }
 
     private static int volumeFor(Performance aPerformance, Play play) {
