@@ -39,11 +39,11 @@ public class StatementPrinter {
         return this.plays.get(aPerformance.playID);
     }
 
-    private static int volumeFor(Performance aPerformance, Play play) {
+    private int volumeFor(Performance aPerformance, Play play) {
         int result;
         result = Math.max(aPerformance.audience - 30, 0);
         // add extra credit for every ten comedy attendees
-        if ("comedy".equals(play.type)) result += Math.floor(aPerformance.audience / 5);
+        if ("comedy".equals(getPlay(aPerformance).type)) result += Math.floor(aPerformance.audience / 5);
         return result;
     }
 
