@@ -8,6 +8,11 @@ public class StatementPrinter {
 
     private Map<String, Play> plays;
 
+    private static String usd(int currency) {
+        NumberFormat usd = NumberFormat.getCurrencyInstance(Locale.US);
+        return usd.format(currency / 100);
+    }
+
     public String print(Invoice invoice, Map<String, Play> plays) {
         this.plays = plays;
         var totalAmount = 0;
@@ -18,12 +23,15 @@ public class StatementPrinter {
             var thisAmount = 0;
             thisAmount = amountFor(aPerformance);
             // add volume credits
-            volumeCredits += volumeFor(aPerformance);
             totalAmount += thisAmount;
-
             // print line for this order
             result += printLine(aPerformance, thisAmount);
         }
+
+        for (var aPerformance : invoice.performances) {
+            volumeCredits += volumeFor(aPerformance);
+        }
+
         result += String.format("Amount owed is %s\n", usd(totalAmount));
         result += String.format("You earned %s credits\n", volumeCredits);
         return result;
@@ -31,11 +39,6 @@ public class StatementPrinter {
 
     private String printLine(Performance aPerformance, int thisAmount) {
         return String.format("  %s: %s (%s seats)\n", getPlay(aPerformance).name, usd(thisAmount), aPerformance.audience);
-    }
-
-    private static String usd(int currency) {
-        NumberFormat usd = NumberFormat.getCurrencyInstance(Locale.US);
-        return usd.format(currency / 100);
     }
 
     private int amountFor(Performance perf) {
