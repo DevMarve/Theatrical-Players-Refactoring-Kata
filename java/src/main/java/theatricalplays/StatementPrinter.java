@@ -33,11 +33,11 @@ public class StatementPrinter {
     }
 
     private static int volumeFor(Performance aPerformance, Play play) {
-        int result1 = 0;
-        result1 = Math.max(aPerformance.audience - 30, 0);
+        int result;
+        result = Math.max(aPerformance.audience - 30, 0);
         // add extra credit for every ten comedy attendees
-        if ("comedy".equals(play.type)) result1 += Math.floor(aPerformance.audience / 5);
-        return result1;
+        if ("comedy".equals(play.type)) result += Math.floor(aPerformance.audience / 5);
+        return result;
     }
 
     private static int amountFor(Performance perf, Play play) {
