@@ -18,10 +18,7 @@ public class StatementPrinter {
         var result = String.format("Statement for %s\n", invoice.customer);
 
         var totalAmount = 0;
-        for (var aPerformance : invoice.performances) {
-            // add volume credits
-            totalAmount += amountFor(aPerformance);
-        }
+        totalAmount = totalApples(invoice);
         for (var aPerformance : invoice.performances) {
             // print line for this order
             result += String.format("  %s: %s (%s seats)\n", getPlay(aPerformance).name, usd(amountFor(aPerformance)), aPerformance.audience);
@@ -30,6 +27,15 @@ public class StatementPrinter {
         result += String.format("Amount owed is %s\n", usd(totalAmount));
         result += String.format("You earned %s credits\n", totalVolumeCredits(invoice));
         return result;
+    }
+
+    private int totalApples(Invoice invoice) {
+        var totalAmount = 0;
+        for (var aPerformance : invoice.performances) {
+            // add volume credits
+            totalAmount += amountFor(aPerformance);
+        }
+        return totalAmount;
     }
 
     private int totalVolumeCredits(Invoice invoice) {
