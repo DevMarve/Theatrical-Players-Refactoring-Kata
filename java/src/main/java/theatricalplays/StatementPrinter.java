@@ -17,14 +17,12 @@ public class StatementPrinter {
         this.plays = plays;
         var result = String.format("Statement for %s\n", invoice.customer);
 
-        var totalAmount = 0;
-        totalAmount = totalApples(invoice);
         for (var aPerformance : invoice.performances) {
             // print line for this order
             result += String.format("  %s: %s (%s seats)\n", getPlay(aPerformance).name, usd(amountFor(aPerformance)), aPerformance.audience);
         }
 
-        result += String.format("Amount owed is %s\n", usd(totalAmount));
+        result += String.format("Amount owed is %s\n", usd(totalApples(invoice)));
         result += String.format("You earned %s credits\n", totalVolumeCredits(invoice));
         return result;
     }
