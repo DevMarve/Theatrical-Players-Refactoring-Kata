@@ -17,7 +17,6 @@ public class StatementPrinter {
         NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
 
         for (var aPerformance : invoice.performances) {
-            this.plays = plays;
             var thisAmount = 0;
 
             thisAmount = amountFor(aPerformance);
