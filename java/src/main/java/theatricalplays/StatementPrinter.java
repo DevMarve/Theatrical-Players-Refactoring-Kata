@@ -17,12 +17,12 @@ public class StatementPrinter {
     public String print(Invoice invoice, Map<String, Play> plays) {
         this.plays = plays;
         this.invoice = invoice;
-        Data data = new Data();
+        Data data = new Data(this.invoice.customer);
         return renderAsPlainText(data);
     }
 
     private String renderAsPlainText(Data data) {
-        var result = String.format("Statement for %s\n", this.invoice.customer);
+        var result = String.format("Statement for %s\n", data.customer());
 
         for (var aPerformance : this.invoice.performances) {
             result += String.format("  %s: %s (%s seats)\n", getPlay(aPerformance).name, usd(amountFor(aPerformance)), aPerformance.audience);

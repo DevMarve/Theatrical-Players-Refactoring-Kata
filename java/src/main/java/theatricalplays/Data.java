@@ -1,4 +1,4 @@
 package theatricalplays;
 
-public record Data() {
+public record Data(String customer) {
 }
