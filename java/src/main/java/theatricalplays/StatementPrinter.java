@@ -22,11 +22,15 @@ public class StatementPrinter {
             totalAmount += thisAmount;
 
             // print line for this order
-            result += String.format("  %s: %s (%s seats)\n", getPlay(aPerformance).name, usd(thisAmount), aPerformance.audience);
+            result += printLine(aPerformance, thisAmount);
         }
         result += String.format("Amount owed is %s\n", usd(totalAmount));
         result += String.format("You earned %s credits\n", volumeCredits);
         return result;
+    }
+
+    private String printLine(Performance aPerformance, int thisAmount) {
+        return String.format("  %s: %s (%s seats)\n", getPlay(aPerformance).name, usd(thisAmount), aPerformance.audience);
     }
 
     private static String usd(int currency) {
