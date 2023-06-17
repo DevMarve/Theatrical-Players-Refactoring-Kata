@@ -6,15 +6,15 @@ public class Performance {
     public int audience;
 
     public Play play;
-    public int amountFor;
+    public int amount;
 
     public Performance(String playID, int audience) {
         this.playID = playID;
         this.audience = audience;
     }
 
-    public void setAmountFor(int amountFor) {
-        this.amountFor = amountFor;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public void setPlay(Play play) {

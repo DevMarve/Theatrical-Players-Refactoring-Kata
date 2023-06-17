@@ -20,7 +20,7 @@ public class StatementPrinter {
         Data data = new Data(this.invoice.customer, this.invoice.performances);
         data.performances().forEach((perf) -> {
             perf.setPlay(getPlay(perf));
-            perf.setAmountFor(amountFor(perf));
+            perf.setAmount(amountFor(perf));
                 });
         return renderAsPlainText(data);
     }
@@ -29,7 +29,7 @@ public class StatementPrinter {
         var result = String.format("Statement for %s\n", data.customer());
 
         for (var aPerformance : data.performances()) {
-            result += String.format("  %s: %s (%s seats)\n", aPerformance.play.name, usd(aPerformance.amountFor), aPerformance.audience);
+            result += String.format("  %s: %s (%s seats)\n", aPerformance.play.name, usd(aPerformance.amount), aPerformance.audience);
         }
 
         result += String.format("Amount owed is %s\n", usd(totalAmount()));
@@ -40,7 +40,7 @@ public class StatementPrinter {
     private int totalAmount() {
         var result = 0;
         for (var aPerformance : this.invoice.performances) {
-            result += aPerformance.amountFor;
+            result += aPerformance.amount;
         }
         return result;
     }
