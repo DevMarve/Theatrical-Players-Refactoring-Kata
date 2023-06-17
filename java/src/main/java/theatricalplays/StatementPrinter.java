@@ -26,14 +26,16 @@ public class StatementPrinter {
         }
 
         var volumeCredits = 0;
-        volumeCredits = totalVolumeCredits(invoice, volumeCredits);
+        volumeCredits = totalVolumeCredits(invoice);
 
         result += String.format("Amount owed is %s\n", usd(totalAmount));
         result += String.format("You earned %s credits\n", volumeCredits);
         return result;
     }
 
-    private int totalVolumeCredits(Invoice invoice, int volumeCredits) {
+    private int totalVolumeCredits(Invoice invoice) {
+
+        int volumeCredits = 0;
         for (var aPerformance : invoice.performances) {
             volumeCredits += volumeCreditsFor(aPerformance);
         }
