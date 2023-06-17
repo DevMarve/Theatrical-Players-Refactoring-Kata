@@ -18,7 +18,6 @@ public class StatementPrinter {
         var result = String.format("Statement for %s\n", invoice.customer);
 
         for (var aPerformance : invoice.performances) {
-            // print line for this order
             result += String.format("  %s: %s (%s seats)\n", getPlay(aPerformance).name, usd(amountFor(aPerformance)), aPerformance.audience);
         }
 
@@ -30,7 +29,6 @@ public class StatementPrinter {
     private int totalAmount(Invoice invoice) {
         var result = 0;
         for (var aPerformance : invoice.performances) {
-            // add volume credits
             result += amountFor(aPerformance);
         }
         return result;
