@@ -15,9 +15,9 @@ public class StatementPrinter {
 
     public String print(Invoice invoice, Map<String, Play> plays) {
         this.plays = plays;
-        var totalAmount = 0;
         var result = String.format("Statement for %s\n", invoice.customer);
 
+        var totalAmount = 0;
         for (var aPerformance : invoice.performances) {
             // add volume credits
             totalAmount += amountFor(aPerformance);
