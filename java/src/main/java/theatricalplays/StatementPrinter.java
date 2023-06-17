@@ -34,18 +34,6 @@ public class StatementPrinter {
         return result;
     }
 
-    private Play getPlay(Performance aPerformance) {
-        return this.plays.get(aPerformance.playID);
-    }
-
-    private int volumeFor(Performance aPerformance) {
-        int result;
-        result = Math.max(aPerformance.audience - 30, 0);
-        // add extra credit for every ten comedy attendees
-        if ("comedy".equals(getPlay(aPerformance).type)) result += Math.floor(aPerformance.audience / 5);
-        return result;
-    }
-
     private int amountFor(Performance perf) {
         int thisAmount;
         switch (getPlay(perf).type) {
@@ -66,6 +54,18 @@ public class StatementPrinter {
                 throw new Error("unknown type: ${play.type}");
         }
         return thisAmount;
+    }
+
+    private int volumeFor(Performance aPerformance) {
+        int result;
+        result = Math.max(aPerformance.audience - 30, 0);
+        // add extra credit for every ten comedy attendees
+        if ("comedy".equals(getPlay(aPerformance).type)) result += Math.floor(aPerformance.audience / 5);
+        return result;
+    }
+
+    private Play getPlay(Performance aPerformance) {
+        return this.plays.get(aPerformance.playID);
     }
 
 }
