@@ -38,15 +38,6 @@ public class StatementPrinter {
         return result;
     }
 
-    private int totalVolumeCredits() {
-
-        int result = 0;
-        for (var aPerformance : this.invoice.performances) {
-            result += volumeCreditsFor(aPerformance);
-        }
-        return result;
-    }
-
     private int amountFor(Performance perf) {
         int result;
         switch (perf.play.type) {
