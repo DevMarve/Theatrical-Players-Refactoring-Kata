@@ -33,16 +33,8 @@ public class StatementPrinter {
             result += String.format("  %s: %s (%s seats)\n", aPerformance.play.name, usd(aPerformance.amount), aPerformance.audience);
         }
 
-        result += String.format("Amount owed is %s\n", usd(totalAmount()));
+        result += String.format("Amount owed is %s\n", usd(data.totalAmount()));
         result += String.format("You earned %s credits\n", totalVolumeCredits());
-        return result;
-    }
-
-    private int totalAmount() {
-        var result = 0;
-        for (var aPerformance : this.invoice.performances) {
-            result += aPerformance.amount;
-        }
         return result;
     }
 
