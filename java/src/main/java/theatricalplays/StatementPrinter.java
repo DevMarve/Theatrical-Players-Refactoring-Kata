@@ -14,8 +14,6 @@ public class StatementPrinter {
         var volumeCredits = 0;
         var result = String.format("Statement for %s\n", invoice.customer);
 
-        NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
-
         for (var aPerformance : invoice.performances) {
             var thisAmount = 0;
 
@@ -26,12 +24,16 @@ public class StatementPrinter {
 
 
             // print line for this order
-            result += String.format("  %s: %s (%s seats)\n", getPlay(aPerformance).name, frmt.format(thisAmount / 100), aPerformance.audience);
+            result += String.format("  %s: %s (%s seats)\n", getPlay(aPerformance).name, usd().format(thisAmount / 100), aPerformance.audience);
             totalAmount += thisAmount;
         }
-        result += String.format("Amount owed is %s\n", frmt.format(totalAmount / 100));
+        result += String.format("Amount owed is %s\n", usd().format(totalAmount / 100));
         result += String.format("You earned %s credits\n", volumeCredits);
         return result;
+    }
+
+    private static NumberFormat usd() {
+        return NumberFormat.getCurrencyInstance(Locale.US);
     }
 
     private int amountFor(Performance perf) {
