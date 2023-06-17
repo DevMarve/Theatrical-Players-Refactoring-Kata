@@ -7,10 +7,15 @@ public class Performance {
 
     public Play play;
     public int amount;
+    public int volumeCredits;
 
     public Performance(String playID, int audience) {
         this.playID = playID;
         this.audience = audience;
+    }
+
+    public void setVolumeCredits(int volumeCredits) {
+        this.volumeCredits = volumeCredits;
     }
 
     public void setAmount(int amount) {
