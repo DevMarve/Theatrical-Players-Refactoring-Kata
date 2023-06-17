@@ -18,17 +18,16 @@ public class StatementPrinter {
 
         for (var aPerformance : invoice.performances) {
             this.plays = plays;
-            var play = getPlay(aPerformance);
             var thisAmount = 0;
 
-            thisAmount = amountFor(aPerformance, play);
+            thisAmount = amountFor(aPerformance, getPlay(aPerformance));
 
             // add volume credits
-            volumeCredits += volumeFor(aPerformance, play);
+            volumeCredits += volumeFor(aPerformance, getPlay(aPerformance));
 
 
             // print line for this order
-            result += String.format("  %s: %s (%s seats)\n", play.name, frmt.format(thisAmount / 100), aPerformance.audience);
+            result += String.format("  %s: %s (%s seats)\n", getPlay(aPerformance).name, frmt.format(thisAmount / 100), aPerformance.audience);
             totalAmount += thisAmount;
         }
         result += String.format("Amount owed is %s\n", frmt.format(totalAmount / 100));
