@@ -22,7 +22,7 @@ public class StatementPrinter {
             // add volume credits
             totalAmount += amountFor(aPerformance);
             // print line for this order
-            result += printLine(aPerformance);
+            result += String.format("  %s: %s (%s seats)\n", getPlay(aPerformance).name, usd(amountFor(aPerformance)), aPerformance.audience);
         }
 
         result += String.format("Amount owed is %s\n", usd(totalAmount));
@@ -37,10 +37,6 @@ public class StatementPrinter {
             volumeCredits += volumeCreditsFor(aPerformance);
         }
         return volumeCredits;
-    }
-
-    private String printLine(Performance aPerformance) {
-        return String.format("  %s: %s (%s seats)\n", getPlay(aPerformance).name, usd(amountFor(aPerformance)), aPerformance.audience);
     }
 
     private int amountFor(Performance perf) {
