@@ -17,7 +17,9 @@ public class StatementPrinter {
     public String print(Invoice invoice, Map<String, Play> plays) {
         this.plays = plays;
         this.invoice = invoice;
-        Data data = new Data(plays, this.invoice.customer, this.invoice.performances);
+        Data data = new Data(this.invoice.customer, this.invoice.performances);
+        data.performances().forEach(perf -> perf.setPlay(getPlay(perf)));
+
         return renderAsPlainText(data);
     }
 
