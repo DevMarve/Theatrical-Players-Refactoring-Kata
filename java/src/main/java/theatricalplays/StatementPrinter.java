@@ -20,7 +20,7 @@ public class StatementPrinter {
             thisAmount = amountFor(aPerformance, play);
 
             // add volume credits
-            volumeCredits = volumeFor(volumeCredits, aPerformance, play);
+            volumeCredits += volumeFor(aPerformance, play);
 
 
             // print line for this order
@@ -32,11 +32,12 @@ public class StatementPrinter {
         return result;
     }
 
-    private static int volumeFor(int volumeCredits, Performance aPerformance, Play play) {
-        volumeCredits += Math.max(aPerformance.audience - 30, 0);
+    private static int volumeFor(Performance aPerformance, Play play) {
+        int result1 = 0;
+        result1 = Math.max(aPerformance.audience - 30, 0);
         // add extra credit for every ten comedy attendees
-        if ("comedy".equals(play.type)) volumeCredits += Math.floor(aPerformance.audience / 5);
-        return volumeCredits;
+        if ("comedy".equals(play.type)) result1 += Math.floor(aPerformance.audience / 5);
+        return result1;
     }
 
     private static int amountFor(Performance perf, Play play) {
