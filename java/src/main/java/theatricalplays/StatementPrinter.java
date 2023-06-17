@@ -38,11 +38,11 @@ public class StatementPrinter {
 
     private int totalVolumeCredits(Invoice invoice) {
 
-        int volumeCredits = 0;
+        int result = 0;
         for (var aPerformance : invoice.performances) {
-            volumeCredits += volumeCreditsFor(aPerformance);
+            result += volumeCreditsFor(aPerformance);
         }
-        return volumeCredits;
+        return result;
     }
 
     private int amountFor(Performance perf) {
