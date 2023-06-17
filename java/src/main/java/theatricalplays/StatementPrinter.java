@@ -20,9 +20,8 @@ public class StatementPrinter {
             thisAmount = amountFor(aPerformance, play);
 
             // add volume credits
-            volumeCredits += Math.max(aPerformance.audience - 30, 0);
-            // add extra credit for every ten comedy attendees
-            if ("comedy".equals(play.type)) volumeCredits += Math.floor(aPerformance.audience / 5);
+            volumeCredits = volumeFor(volumeCredits, aPerformance, play);
+
 
             // print line for this order
             result += String.format("  %s: %s (%s seats)\n", play.name, frmt.format(thisAmount / 100), aPerformance.audience);
@@ -31,6 +30,13 @@ public class StatementPrinter {
         result += String.format("Amount owed is %s\n", frmt.format(totalAmount / 100));
         result += String.format("You earned %s credits\n", volumeCredits);
         return result;
+    }
+
+    private static int volumeFor(int volumeCredits, Performance aPerformance, Play play) {
+        volumeCredits += Math.max(aPerformance.audience - 30, 0);
+        // add extra credit for every ten comedy attendees
+        if ("comedy".equals(play.type)) volumeCredits += Math.floor(aPerformance.audience / 5);
+        return volumeCredits;
     }
 
     private static int amountFor(Performance perf, Play play) {
