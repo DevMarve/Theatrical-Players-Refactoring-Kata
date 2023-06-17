@@ -27,7 +27,7 @@ public class StatementPrinter {
 
         var volumeCredits = 0;
         for (var aPerformance : invoice.performances) {
-            volumeCredits += volumeFor(aPerformance);
+            volumeCredits += volumeCreditsFor(aPerformance);
         }
 
         result += String.format("Amount owed is %s\n", usd(totalAmount));
@@ -61,7 +61,7 @@ public class StatementPrinter {
         return thisAmount;
     }
 
-    private int volumeFor(Performance aPerformance) {
+    private int volumeCreditsFor(Performance aPerformance) {
         int result;
         result = Math.max(aPerformance.audience - 30, 0);
         // add extra credit for every ten comedy attendees
