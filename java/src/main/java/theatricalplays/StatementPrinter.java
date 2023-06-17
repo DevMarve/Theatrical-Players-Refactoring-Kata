@@ -18,6 +18,10 @@ public class StatementPrinter {
         this.plays = plays;
         this.invoice = invoice;
 
+        return renderAsPlainText();
+    }
+
+    private String renderAsPlainText() {
         var result = String.format("Statement for %s\n", this.invoice.customer);
 
         for (var aPerformance : this.invoice.performances) {
