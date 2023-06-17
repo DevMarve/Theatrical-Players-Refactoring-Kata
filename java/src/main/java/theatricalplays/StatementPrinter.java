@@ -20,7 +20,7 @@ public class StatementPrinter {
             this.plays = plays;
             var thisAmount = 0;
 
-            thisAmount = amountFor(aPerformance, getPlay(aPerformance));
+            thisAmount = amountFor(aPerformance);
 
             // add volume credits
             volumeCredits += volumeFor(aPerformance, getPlay(aPerformance));
@@ -47,9 +47,9 @@ public class StatementPrinter {
         return result;
     }
 
-    private static int amountFor(Performance perf, Play play) {
+    private int amountFor(Performance perf) {
         int thisAmount;
-        switch (play.type) {
+        switch (getPlay(perf).type) {
             case "tragedy":
                 thisAmount = 40000;
                 if (perf.audience > 30) {
