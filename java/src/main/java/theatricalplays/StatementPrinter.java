@@ -20,27 +20,27 @@ public class StatementPrinter {
 
         var result = String.format("Statement for %s\n", this.invoice.customer);
 
-        for (var aPerformance : invoice.performances) {
+        for (var aPerformance : this.invoice.performances) {
             result += String.format("  %s: %s (%s seats)\n", getPlay(aPerformance).name, usd(amountFor(aPerformance)), aPerformance.audience);
         }
 
-        result += String.format("Amount owed is %s\n", usd(totalAmount(invoice)));
-        result += String.format("You earned %s credits\n", totalVolumeCredits(invoice));
+        result += String.format("Amount owed is %s\n", usd(totalAmount()));
+        result += String.format("You earned %s credits\n", totalVolumeCredits());
         return result;
     }
 
-    private int totalAmount(Invoice invoice) {
+    private int totalAmount() {
         var result = 0;
-        for (var aPerformance : invoice.performances) {
+        for (var aPerformance : this.invoice.performances) {
             result += amountFor(aPerformance);
         }
         return result;
     }
 
-    private int totalVolumeCredits(Invoice invoice) {
+    private int totalVolumeCredits() {
 
         int result = 0;
-        for (var aPerformance : invoice.performances) {
+        for (var aPerformance : this.invoice.performances) {
             result += volumeCreditsFor(aPerformance);
         }
         return result;
