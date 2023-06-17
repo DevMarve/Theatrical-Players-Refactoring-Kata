@@ -16,7 +16,6 @@ public class StatementPrinter {
     public String print(Invoice invoice, Map<String, Play> plays) {
         this.plays = plays;
         var totalAmount = 0;
-        var volumeCredits = 0;
         var result = String.format("Statement for %s\n", invoice.customer);
 
         for (var aPerformance : invoice.performances) {
@@ -26,6 +25,7 @@ public class StatementPrinter {
             result += printLine(aPerformance);
         }
 
+        var volumeCredits = 0;
         for (var aPerformance : invoice.performances) {
             volumeCredits += volumeFor(aPerformance);
         }
