@@ -1,4 +1,6 @@
 package theatricalplays;
 
-public record Data(String customer) {
+import java.util.List;
+
+public record Data(String customer, List<Performance> performances) {
 }
