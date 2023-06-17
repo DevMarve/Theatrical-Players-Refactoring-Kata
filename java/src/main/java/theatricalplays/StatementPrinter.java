@@ -24,16 +24,17 @@ public class StatementPrinter {
 
 
             // print line for this order
-            result += String.format("  %s: %s (%s seats)\n", getPlay(aPerformance).name, usd().format(thisAmount / 100), aPerformance.audience);
+            result += String.format("  %s: %s (%s seats)\n", getPlay(aPerformance).name, usd(thisAmount), aPerformance.audience);
             totalAmount += thisAmount;
         }
-        result += String.format("Amount owed is %s\n", usd().format(totalAmount / 100));
+        result += String.format("Amount owed is %s\n", usd(totalAmount));
         result += String.format("You earned %s credits\n", volumeCredits);
         return result;
     }
 
-    private static NumberFormat usd() {
-        return NumberFormat.getCurrencyInstance(Locale.US);
+    private static String usd(int currency) {
+        NumberFormat usd = NumberFormat.getCurrencyInstance(Locale.US);
+        return usd.format(currency / 100);
     }
 
     private int amountFor(Performance perf) {
