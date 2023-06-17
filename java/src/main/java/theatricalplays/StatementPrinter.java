@@ -22,12 +22,12 @@ public class StatementPrinter {
             result += String.format("  %s: %s (%s seats)\n", getPlay(aPerformance).name, usd(amountFor(aPerformance)), aPerformance.audience);
         }
 
-        result += String.format("Amount owed is %s\n", usd(totalApples(invoice)));
+        result += String.format("Amount owed is %s\n", usd(totalAmount(invoice)));
         result += String.format("You earned %s credits\n", totalVolumeCredits(invoice));
         return result;
     }
 
-    private int totalApples(Invoice invoice) {
+    private int totalAmount(Invoice invoice) {
         var totalAmount = 0;
         for (var aPerformance : invoice.performances) {
             // add volume credits
