@@ -27,7 +27,7 @@ public class StatementPrinter {
         var result = String.format("Statement for %s\n", data.customer());
 
         for (var aPerformance : data.performances()) {
-            result += String.format("  %s: %s (%s seats)\n", getPlay(aPerformance).name, usd(amountFor(aPerformance)), aPerformance.audience);
+            result += String.format("  %s: %s (%s seats)\n", aPerformance.play.name, usd(amountFor(aPerformance)), aPerformance.audience);
         }
 
         result += String.format("Amount owed is %s\n", usd(totalAmount()));
@@ -54,7 +54,7 @@ public class StatementPrinter {
 
     private int amountFor(Performance perf) {
         int result;
-        switch (getPlay(perf).type) {
+        switch (perf.play.type) {
             case "tragedy":
                 result = 40000;
                 if (perf.audience > 30) {
@@ -78,7 +78,7 @@ public class StatementPrinter {
         int result;
         result = Math.max(aPerformance.audience - 30, 0);
         // add extra credit for every ten comedy attendees
-        if ("comedy".equals(getPlay(aPerformance).type)) result += Math.floor(aPerformance.audience / 5);
+        if ("comedy".equals(aPerformance.play.type)) result += Math.floor(aPerformance.audience / 5);
         return result;
     }
 
