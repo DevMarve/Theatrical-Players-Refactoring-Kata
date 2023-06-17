@@ -23,7 +23,7 @@ public class StatementPrinter {
             thisAmount = amountFor(aPerformance);
 
             // add volume credits
-            volumeCredits += volumeFor(aPerformance, getPlay(aPerformance));
+            volumeCredits += volumeFor(aPerformance);
 
 
             // print line for this order
@@ -39,7 +39,7 @@ public class StatementPrinter {
         return this.plays.get(aPerformance.playID);
     }
 
-    private int volumeFor(Performance aPerformance, Play play) {
+    private int volumeFor(Performance aPerformance) {
         int result;
         result = Math.max(aPerformance.audience - 30, 0);
         // add extra credit for every ten comedy attendees
