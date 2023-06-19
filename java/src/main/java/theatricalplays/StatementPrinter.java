@@ -33,7 +33,7 @@ public class StatementPrinter {
         return result;
     }
 
-    private Play getPlay(Performance aPerformance, Map<String, Play> plays) {
+    private static Play getPlay(Performance aPerformance, Map<String, Play> plays) {
         return plays.get(aPerformance.playID);
     }
 
