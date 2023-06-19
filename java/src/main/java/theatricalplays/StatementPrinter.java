@@ -21,7 +21,7 @@ public class StatementPrinter {
         data.performances().forEach((perf) -> {
             perf.setPlay(getPlay(perf));
             perf.calculateAmount();
-            perf.volumeCreditsFor();
+            perf.calculateVolumeCredits();
                 });
         return renderAsPlainText(data);
     }
