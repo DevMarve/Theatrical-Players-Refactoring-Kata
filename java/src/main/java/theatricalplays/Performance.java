@@ -14,14 +14,6 @@ public class Performance {
         this.audience = audience;
     }
 
-    public void setVolumeCredits(int volumeCredits) {
-        this.volumeCredits = volumeCredits;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
     public void setPlay(Play play) {
         this.play = play;
     }
