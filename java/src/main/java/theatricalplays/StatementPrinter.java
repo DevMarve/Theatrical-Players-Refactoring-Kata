@@ -20,7 +20,7 @@ public class StatementPrinter {
         Data data = new Data(this.invoice.customer, this.invoice.performances);
         data.performances().forEach((perf) -> {
             perf.setPlay(getPlay(perf));
-            perf.setAmount(amountFor(perf));
+            perf.setAmount(perf.amountFor());
             perf.setVolumeCredits(volumeCreditsFor(perf));
                 });
         return renderAsPlainText(data);
@@ -35,28 +35,6 @@ public class StatementPrinter {
 
         result += String.format("Amount owed is %s\n", usd(data.totalAmount()));
         result += String.format("You earned %s credits\n", data.totalVolumeCredits());
-        return result;
-    }
-
-    private int amountFor(Performance perf) {
-        int result;
-        switch (perf.play.type) {
-            case "tragedy":
-                result = 40000;
-                if (perf.audience > 30) {
-                    result += 1000 * (perf.audience - 30);
-                }
-                break;
-            case "comedy":
-                result = 30000;
-                if (perf.audience > 20) {
-                    result += 10000 + 500 * (perf.audience - 20);
-                }
-                result += 300 * perf.audience;
-                break;
-            default:
-                throw new Error("unknown type: ${play.type}");
-        }
         return result;
     }
 
