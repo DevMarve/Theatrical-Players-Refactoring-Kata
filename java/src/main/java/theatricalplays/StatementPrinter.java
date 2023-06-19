@@ -20,7 +20,7 @@ public class StatementPrinter {
         Data data = new Data(this.invoice.customer, this.invoice.performances);
         data.performances().forEach((perf) -> {
             perf.setPlay(getPlay(perf));
-            perf.amountFor();
+            perf.calculateAmount();
             perf.setVolumeCredits(volumeCreditsFor(perf));
                 });
         return renderAsPlainText(data);

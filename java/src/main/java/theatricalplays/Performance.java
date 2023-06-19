@@ -26,7 +26,7 @@ public class Performance {
         this.play = play;
     }
 
-    public void amountFor() {
+    public void calculateAmount() {
         switch (play.type) {
             case "tragedy":
                 amount = 40000;
