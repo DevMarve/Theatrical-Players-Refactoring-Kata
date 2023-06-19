@@ -16,8 +16,7 @@ public class StatementPrinter {
     }
 
     public String print(Invoice invoice, Map<String, Play> plays) {
-        Data data = createStatementData(invoice, plays);
-        return renderAsPlainText(data);
+        return renderAsPlainText(createStatementData(invoice, plays));
     }
 
     private static Data createStatementData(Invoice invoice, Map<String, Play> plays) {
