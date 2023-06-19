@@ -11,22 +11,8 @@ public class StatementPrinter {
         return usd.format(currency / 100);
     }
 
-    private static Play getPlay(Performance aPerformance, Map<String, Play> plays) {
-        return plays.get(aPerformance.playID);
-    }
-
     public String print(Invoice invoice, Map<String, Play> plays) {
-        return renderAsPlainText(createStatementData(invoice, plays));
-    }
-
-    private static Data createStatementData(Invoice invoice, Map<String, Play> plays) {
-        Data data = new Data(invoice.customer, invoice.performances);
-        data.performances().forEach((perf) -> {
-            perf.setPlay(getPlay(perf, plays));
-            perf.calculateAmount();
-            perf.calculateVolumeCredits();
-        });
-        return data;
+        return renderAsPlainText(Data.createStatementData(invoice, plays));
     }
 
     private String renderAsPlainText(Data data) {
