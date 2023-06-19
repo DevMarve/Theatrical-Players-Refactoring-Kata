@@ -16,13 +16,18 @@ public class StatementPrinter {
     }
 
     public String print(Invoice invoice, Map<String, Play> plays) {
+        Data data = createStatementData(invoice, plays);
+        return renderAsPlainText(data);
+    }
+
+    private static Data createStatementData(Invoice invoice, Map<String, Play> plays) {
         Data data = new Data(invoice.customer, invoice.performances);
         data.performances().forEach((perf) -> {
             perf.setPlay(getPlay(perf, plays));
             perf.calculateAmount();
             perf.calculateVolumeCredits();
         });
-        return renderAsPlainText(data);
+        return data;
     }
 
     private String renderAsPlainText(Data data) {
