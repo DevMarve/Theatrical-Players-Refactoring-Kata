@@ -21,7 +21,7 @@ public class StatementPrinter {
         data.performances().forEach((perf) -> {
             perf.setPlay(getPlay(perf));
             perf.calculateAmount();
-            perf.setVolumeCredits(volumeCreditsFor(perf));
+            perf.setVolumeCredits(perf.volumeCreditsFor());
                 });
         return renderAsPlainText(data);
     }
@@ -35,14 +35,6 @@ public class StatementPrinter {
 
         result += String.format("Amount owed is %s\n", usd(data.totalAmount()));
         result += String.format("You earned %s credits\n", data.totalVolumeCredits());
-        return result;
-    }
-
-    private int volumeCreditsFor(Performance aPerformance) {
-        int result;
-        result = Math.max(aPerformance.audience - 30, 0);
-        // add extra credit for every ten comedy attendees
-        if ("comedy".equals(aPerformance.play.type)) result += Math.floor(aPerformance.audience / 5);
         return result;
     }
 
