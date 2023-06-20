@@ -1,8 +1,8 @@
 package theatricalplays;
 
 public class PerformanceCalculator {
-    private final Play play;
-    private final int audience;
+    protected final Play play;
+    protected final int audience;
 
     public PerformanceCalculator(Play play, int audience) {
         this.play = play;
@@ -10,25 +10,24 @@ public class PerformanceCalculator {
     }
 
     public static PerformanceCalculator createPerformanceCalculator(Play play, int audience) {
+        switch (play.type) {
+            case "tragedy": {
+                return new TragedyPerformanceCalculator(play, audience);
+            } case "comedy": {
+                return new ComedyPerformanceCalculator(play, audience);
+            }
+        }
         return new PerformanceCalculator(play, audience);
     }
 
     public int amount() {
-        int amount;
+        int amount = 0;
         switch (play.type) {
             case "tragedy": {
-                amount = 40000;
-                if (audience > 30) {
-                    amount += 1000 * (audience - 30);
-                }
-                break;
+                throw new IllegalCallerException();
             }
             case "comedy": {
-                amount = 30000;
-                if (audience > 20) {
-                    amount += 10000 + 500 * (audience - 20);
-                }
-                amount += 300 * audience;
+
                 break;
             }
             default:
