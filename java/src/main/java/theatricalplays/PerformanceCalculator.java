@@ -9,6 +9,10 @@ public class PerformanceCalculator {
         this.audience = audience;
     }
 
+    public static PerformanceCalculator createPerformanceCalculator(Play play, int audience) {
+        return new PerformanceCalculator(play, audience);
+    }
+
     public int amount() {
         int amount;
         switch (play.type) {

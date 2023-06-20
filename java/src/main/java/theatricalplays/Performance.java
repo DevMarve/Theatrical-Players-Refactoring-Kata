@@ -19,10 +19,10 @@ public class Performance {
     }
 
     public void calculateAmount() {
-        amount = new PerformanceCalculator(play, audience).amount();
+        amount = PerformanceCalculator.createPerformanceCalculator(play, audience).amount();
     }
 
     public void calculateVolumeCredits() {
-        volumeCredits = new PerformanceCalculator(play, audience).volumeCredits();
+        volumeCredits = PerformanceCalculator.createPerformanceCalculator(play, audience).volumeCredits();
     }
 }
