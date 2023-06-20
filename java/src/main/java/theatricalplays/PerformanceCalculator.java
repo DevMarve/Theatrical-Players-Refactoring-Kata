@@ -13,28 +13,15 @@ public class PerformanceCalculator {
         switch (play.type) {
             case "tragedy": {
                 return new TragedyPerformanceCalculator(play, audience);
-            } case "comedy": {
+            }
+            case "comedy": {
                 return new ComedyPerformanceCalculator(play, audience);
             }
         }
-        return new PerformanceCalculator(play, audience);
+        throw new Error("unknown type: ${play.type}");
     }
 
-    public int amount() {
-        int amount = 0;
-        switch (play.type) {
-            case "tragedy": {
-                throw new IllegalCallerException();
-            }
-            case "comedy": {
-
-                break;
-            }
-            default:
-                throw new Error("unknown type: ${play.type}");
-        }
-        return amount;
-    }
+    public int amount() { throw new UnsupportedOperationException();}
 
     public int volumeCredits() {
         int volumeCredits;
