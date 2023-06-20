@@ -27,7 +27,6 @@ public class PerformanceCalculator {
         int volumeCredits;
         volumeCredits = Math.max(audience - 30, 0);
         // add extra credit for every ten comedy attendees
-        if ("comedy".equals(play.type)) volumeCredits += Math.floor(audience / 5);
         return volumeCredits;
     }
 }
