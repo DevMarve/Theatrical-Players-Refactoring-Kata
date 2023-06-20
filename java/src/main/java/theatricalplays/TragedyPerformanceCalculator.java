@@ -7,12 +7,10 @@ public class TragedyPerformanceCalculator extends PerformanceCalculator {
 
     @Override
     public int amount() {
-
-       int  amount = 40000;
+        int result = 40000;
         if (audience > 30) {
-            amount += 1000 * (audience - 30);
+            result += 1000 * (audience - 30);
         }
-
-        return amount;
+        return result;
     }
 }

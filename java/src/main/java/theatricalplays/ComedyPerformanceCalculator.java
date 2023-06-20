@@ -7,18 +7,17 @@ public class ComedyPerformanceCalculator extends PerformanceCalculator {
 
     @Override
     public int amount() {
-        int amount = 30000;
+        int result = 30000;
         if (audience > 20) {
-            amount += 10000 + 500 * (audience - 20);
+            result += 10000 + 500 * (audience - 20);
         }
-        amount += 300 * audience;
-        return amount;
+        result += 300 * audience;
+        return result;
     }
 
     @Override
     public int volumeCredits() {
         int volumeCredits = super.volumeCredits();
-
         return volumeCredits += Math.floor(audience / 5);
     }
 }

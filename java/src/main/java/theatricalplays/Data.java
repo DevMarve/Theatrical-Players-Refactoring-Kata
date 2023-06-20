@@ -28,7 +28,6 @@ public record Data(String customer, List<Performance> performances) {
     }
 
     public int totalVolumeCredits() {
-
         int result = 0;
         for (var aPerformance : this.performances) {
             result += aPerformance.volumeCredits;
