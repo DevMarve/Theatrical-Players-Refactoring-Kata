@@ -13,7 +13,7 @@ public class StatementPrinter {
         var result = String.format("Statement for %s\n", invoice.customer);
 
         var volumeCredits = 0;
-        volumeCredits = totalVolumeCredits(invoice, volumeCredits);
+        volumeCredits = totalVolumeCredits(invoice);
 
         var totalAmount = 0;
         for (var perf : invoice.performances) {
@@ -27,7 +27,8 @@ public class StatementPrinter {
         return result;
     }
 
-    private int totalVolumeCredits(Invoice invoice, int volumeCredits) {
+    private int totalVolumeCredits(Invoice invoice) {
+        int volumeCredits = 0;
         for (var perf : invoice.performances) {
             // add volume credits
             volumeCredits += volumeCreditsFor(perf);
