@@ -14,17 +14,17 @@ public class StatementPrinter {
         this.invoice = invoice;
 
         var result = String.format("Statement for %s\n", this.invoice.customer);
-        for (var perf : invoice.performances) {
+        for (var perf : this.invoice.performances) {
             // print line for this order
             result += String.format("  %s: %s (%s seats)\n", getPlay(perf).name, usd(amountFor(perf)), perf.audience);
         }
 
-        result += String.format("Amount owed is %s\n", usd(totalAmount(invoice)));
-        result += String.format("You earned %s credits\n", totalVolumeCredits(invoice));
+        result += String.format("Amount owed is %s\n", usd(totalAmount()));
+        result += String.format("You earned %s credits\n", totalVolumeCredits());
         return result;
     }
 
-    private int totalAmount(Invoice invoice) {
+    private int totalAmount() {
         int result = 0;
         for (var perf : invoice.performances) {
             result += amountFor(perf);
@@ -32,7 +32,7 @@ public class StatementPrinter {
         return result;
     }
 
-    private int totalVolumeCredits(Invoice invoice) {
+    private int totalVolumeCredits() {
         int resul = 0;
         for (var perf : invoice.performances) {
             // add volume credits
