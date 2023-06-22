@@ -10,19 +10,21 @@ public class StatementPrinter {
 
     public String print(Invoice invoice, Map<String, Play> plays) {
         this.plays = plays;
-        var totalAmount = 0;
-        var volumeCredits = 0;
         var result = String.format("Statement for %s\n", invoice.customer);
 
+        var volumeCredits = 0;
         for (var perf : invoice.performances) {
-
             // add volume credits
             volumeCredits += volumeCreditsFor(perf);
+        }
 
+        var totalAmount = 0;
+        for (var perf : invoice.performances) {
             // print line for this order
             result += String.format("  %s: %s (%s seats)\n", getPlay(perf).name, usd(amountFor(perf)), perf.audience);
             totalAmount += amountFor(perf);
         }
+
         result += String.format("Amount owed is %s\n", usd(totalAmount));
         result += String.format("You earned %s credits\n", volumeCredits);
         return result;
