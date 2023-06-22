@@ -19,12 +19,12 @@ public class StatementPrinter {
             result += String.format("  %s: %s (%s seats)\n", getPlay(perf).name, usd(amountFor(perf)), perf.audience);
         }
 
-        result += String.format("Amount owed is %s\n", usd(applePie(invoice, totalAmount)));
+        result += String.format("Amount owed is %s\n", usd(totalAmount(invoice, totalAmount)));
         result += String.format("You earned %s credits\n", totalVolumeCredits(invoice));
         return result;
     }
 
-    private int applePie(Invoice invoice, int totalAmount) {
+    private int totalAmount(Invoice invoice, int totalAmount) {
         for (var perf : invoice.performances) {
             totalAmount += amountFor(perf);
         }
