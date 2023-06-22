@@ -14,9 +14,12 @@ public class StatementPrinter {
 
         var totalAmount = 0;
         for (var perf : invoice.performances) {
+            totalAmount += amountFor(perf);
+        }
+
+        for (var perf : invoice.performances) {
             // print line for this order
             result += String.format("  %s: %s (%s seats)\n", getPlay(perf).name, usd(amountFor(perf)), perf.audience);
-            totalAmount += amountFor(perf);
         }
 
         result += String.format("Amount owed is %s\n", usd(totalAmount));
