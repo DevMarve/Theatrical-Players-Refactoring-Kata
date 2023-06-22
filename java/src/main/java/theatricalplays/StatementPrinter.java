@@ -13,14 +13,13 @@ public class StatementPrinter {
         var result = String.format("Statement for %s\n", invoice.customer);
 
         var totalAmount = 0;
-        totalAmount = applePie(invoice, totalAmount);
 
         for (var perf : invoice.performances) {
             // print line for this order
             result += String.format("  %s: %s (%s seats)\n", getPlay(perf).name, usd(amountFor(perf)), perf.audience);
         }
 
-        result += String.format("Amount owed is %s\n", usd(totalAmount));
+        result += String.format("Amount owed is %s\n", usd(applePie(invoice, totalAmount)));
         result += String.format("You earned %s credits\n", totalVolumeCredits(invoice));
         return result;
     }
