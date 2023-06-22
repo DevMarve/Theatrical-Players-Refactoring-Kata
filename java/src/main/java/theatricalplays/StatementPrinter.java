@@ -14,7 +14,7 @@ public class StatementPrinter {
         var volumeCredits = 0;
         var result = String.format("Statement for %s\n", invoice.customer);
 
-        NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
+        NumberFormat frmt = usd();
 
         for (var perf : invoice.performances) {
 
@@ -28,6 +28,11 @@ public class StatementPrinter {
         result += String.format("Amount owed is %s\n", frmt.format(totalAmount / 100));
         result += String.format("You earned %s credits\n", volumeCredits);
         return result;
+    }
+
+    private static NumberFormat usd() {
+        NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
+        return frmt;
     }
 
     private Play getPlay(Performance perf) {
