@@ -13,6 +13,10 @@ public class StatementPrinter {
         this.plays = plays;
         this.invoice = invoice;
 
+        return renderPlainText();
+    }
+
+    private String renderPlainText() {
         var result = String.format("Statement for %s\n", this.invoice.customer);
         for (var perf : this.invoice.performances) {
             // print line for this order
