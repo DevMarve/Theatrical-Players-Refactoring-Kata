@@ -22,8 +22,8 @@ public class StatementPrinter {
             volumeCredits += volumeCreditsFor(perf);
 
             // print line for this order
-            result += String.format("  %s: %s (%s seats)\n", getPlay(perf).name, frmt.format(amountFor(perf, getPlay(perf)) / 100), perf.audience);
-            totalAmount += amountFor(perf, getPlay(perf));
+            result += String.format("  %s: %s (%s seats)\n", getPlay(perf).name, frmt.format(amountFor(perf) / 100), perf.audience);
+            totalAmount += amountFor(perf);
         }
         result += String.format("Amount owed is %s\n", frmt.format(totalAmount / 100));
         result += String.format("You earned %s credits\n", volumeCredits);
@@ -41,9 +41,9 @@ public class StatementPrinter {
         return result;
     }
 
-    private static int amountFor(Performance aPerformance, Play play) {
+    private int amountFor(Performance aPerformance) {
         int result;
-        switch (play.type) {
+        switch (getPlay(aPerformance).type) {
             case "tragedy":
                 result = 40000;
                 if (aPerformance.audience > 30) {
