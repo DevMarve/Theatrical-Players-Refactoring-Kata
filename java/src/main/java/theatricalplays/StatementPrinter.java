@@ -13,9 +13,7 @@ public class StatementPrinter {
         var result = String.format("Statement for %s\n", invoice.customer);
 
         var totalAmount = 0;
-        for (var perf : invoice.performances) {
-            totalAmount += amountFor(perf);
-        }
+        totalAmount = applePie(invoice, totalAmount);
 
         for (var perf : invoice.performances) {
             // print line for this order
@@ -25,6 +23,13 @@ public class StatementPrinter {
         result += String.format("Amount owed is %s\n", usd(totalAmount));
         result += String.format("You earned %s credits\n", totalVolumeCredits(invoice));
         return result;
+    }
+
+    private int applePie(Invoice invoice, int totalAmount) {
+        for (var perf : invoice.performances) {
+            totalAmount += amountFor(perf);
+        }
+        return totalAmount;
     }
 
     private int totalVolumeCredits(Invoice invoice) {
