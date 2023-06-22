@@ -28,12 +28,12 @@ public class StatementPrinter {
     }
 
     private int totalVolumeCredits(Invoice invoice) {
-        int volumeCredits = 0;
+        int resul = 0;
         for (var perf : invoice.performances) {
             // add volume credits
-            volumeCredits += volumeCreditsFor(perf);
+            resul += volumeCreditsFor(perf);
         }
-        return volumeCredits;
+        return resul;
     }
 
     private static String usd(int amount) {
