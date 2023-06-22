@@ -17,7 +17,7 @@ public class StatementPrinter {
             var play = plays.get(perf.playID);
 
             // add volume credits
-            volumeCredits = volumeCreditsFor(volumeCredits, perf, play);
+            volumeCredits += volumeCreditsFor(perf, play);
 
             // print line for this order
             result += String.format("  %s: %s (%s seats)\n", play.name, frmt.format(amountFor(perf, play) / 100), perf.audience);
@@ -28,11 +28,11 @@ public class StatementPrinter {
         return result;
     }
 
-    private static int volumeCreditsFor(int volumeCredits, Performance perf, Play play) {
-        volumeCredits += Math.max(perf.audience - 30, 0);
+    private static int volumeCreditsFor(Performance aPerformance, Play play) {
+        int result = Math.max(aPerformance.audience - 30, 0);
         // add extra credit for every ten comedy attendees
-        if ("comedy".equals(play.type)) volumeCredits += Math.floor(perf.audience / 5);
-        return volumeCredits;
+        if ("comedy".equals(play.type)) result += Math.floor(aPerformance.audience / 5);
+        return result;
     }
 
     private static int amountFor(Performance aPerformance, Play play) {
