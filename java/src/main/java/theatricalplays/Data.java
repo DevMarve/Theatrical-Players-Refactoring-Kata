@@ -9,4 +9,11 @@ public record Data(String customer, java.util.List<Performance> performances, ja
 			perf.setPlay(getPlay(perf));
 		});
 	}
+	public int totalAmount() {
+        int result = 0;
+        for (var perf : performances) {
+            result += perf.amount();
+        }
+        return result;
+    }
 }
