@@ -4,7 +4,7 @@ public class Performance {
 
     public String playID;
     public int audience;
-	private Play play;
+	public Play play;
 
 	public Performance(String playID, int audience) {
         this.playID = playID;
