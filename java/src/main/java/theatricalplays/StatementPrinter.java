@@ -5,15 +5,8 @@ import java.util.Locale;
 import java.util.Map;
 
 public class StatementPrinter {
-
-    private Map<String, Play> plays;
-    private Invoice invoice;
-
-    public String print(Invoice invoice, Map<String, Play> plays) {
-        this.plays = plays;
-        this.invoice = invoice;
-
-        Data data = new Data(invoice.customer, invoice.performances, plays);
+	public String print(Invoice invoice, Map<String, Play> plays) {
+		Data data = new Data(invoice.customer, invoice.performances, plays);
         data.enrichPerformances();
         return renderPlainText(data);
     }
@@ -29,10 +22,6 @@ public class StatementPrinter {
         result += String.format("You earned %s credits\n", data.totalVolumeCredits());
         return result;
     }
-
-
-
-
 
     private static String usd(int amount) {
         String frmt = NumberFormat.getCurrencyInstance(Locale.US).format(amount/100);
