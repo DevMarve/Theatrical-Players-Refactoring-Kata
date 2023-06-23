@@ -5,6 +5,7 @@ public record Data(String customer, java.util.List<Performance> performances, ja
 		return this.plays.get(perf.playID);
 	}
 	public void enrichPerformances() {
+		PerformanceCalculator calculator = new PerformanceCalculator();
 		performances.forEach(perf -> {
 			perf.setPlay(getPlay(perf));
 		});
