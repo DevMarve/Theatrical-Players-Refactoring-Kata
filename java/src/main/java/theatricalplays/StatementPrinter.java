@@ -42,7 +42,7 @@ public class StatementPrinter {
         int resul = 0;
         for (var perf : invoice.performances) {
             // add volume credits
-            resul += volumeCreditsFor(perf);
+            resul += perf.volumeCreditsFor(perf);
         }
         return resul;
     }
@@ -56,12 +56,7 @@ public class StatementPrinter {
         return this.plays.get(perf.playID);
     }
 
-    private int volumeCreditsFor(Performance aPerformance) {
-        int result = Math.max(aPerformance.audience - 30, 0);
-        // add extra credit for every ten comedy attendees
-        if ("comedy".equals(getPlay(aPerformance).type)) result += Math.floor(aPerformance.audience / 5);
-        return result;
-    }
+
 
 
 

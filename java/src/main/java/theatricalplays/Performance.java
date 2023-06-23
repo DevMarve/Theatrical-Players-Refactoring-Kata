@@ -35,4 +35,10 @@ public class Performance {
         }
         return result;
     }
+    public int volumeCreditsFor(Performance aPerformance) {
+        int result = Math.max(aPerformance.audience - 30, 0);
+        // add extra credit for every ten comedy attendees
+        if ("comedy".equals(play.type)) result += Math.floor(aPerformance.audience / 5);
+        return result;
+    }
 }
