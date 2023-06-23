@@ -42,7 +42,7 @@ public class StatementPrinter {
         int resul = 0;
         for (var perf : invoice.performances) {
             // add volume credits
-            resul += perf.volumeCreditsFor(perf);
+            resul += perf.volumeCreditsFor();
         }
         return resul;
     }
