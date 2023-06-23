@@ -13,13 +13,13 @@ public class StatementPrinter {
         this.plays = plays;
         this.invoice = invoice;
 
-        Data data = new Data(this.invoice.customer);
+        Data data = new Data(this.invoice.customer, invoice.performances);
         return renderPlainText(data);
     }
 
     private String renderPlainText(Data customer) {
         var result = String.format("Statement for %s\n", customer.customer());
-        for (var perf : this.invoice.performances) {
+        for (var perf : customer.performances()) {
             // print line for this order
             result += String.format("  %s: %s (%s seats)\n", getPlay(perf).name, usd(amountFor(perf)), perf.audience);
         }
