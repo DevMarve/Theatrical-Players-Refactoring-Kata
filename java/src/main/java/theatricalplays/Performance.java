@@ -14,21 +14,21 @@ public class Performance {
 	public void setPlay(Play play) {
 		this.play = play;
 	}
-	public int amountFor(Performance aPerformance) {
+	public int amountFor() {
         int result;
         switch (play.type) {
             case "tragedy":
                 result = 40000;
-                if (aPerformance.audience > 30) {
-                    result += 1000 * (aPerformance.audience - 30);
+                if (audience > 30) {
+                    result += 1000 * (audience - 30);
                 }
                 break;
             case "comedy":
                 result = 30000;
-                if (aPerformance.audience > 20) {
-                    result += 10000 + 500 * (aPerformance.audience - 20);
+                if (audience > 20) {
+                    result += 10000 + 500 * (audience - 20);
                 }
-                result += 300 * aPerformance.audience;
+                result += 300 * audience;
                 break;
             default:
                 throw new Error("unknown type: ${play.type}");

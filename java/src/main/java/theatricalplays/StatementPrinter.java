@@ -22,7 +22,7 @@ public class StatementPrinter {
         var result = String.format("Statement for %s\n", data.customer());
         for (var perf : data.performances()) {
             // print line for this order
-            result += String.format("  %s: %s (%s seats)\n", getPlay(perf).name, usd(perf.amountFor(perf)), perf.audience);
+            result += String.format("  %s: %s (%s seats)\n", getPlay(perf).name, usd(perf.amountFor()), perf.audience);
         }
 
         result += String.format("Amount owed is %s\n", usd(totalAmount()));
@@ -33,7 +33,7 @@ public class StatementPrinter {
     private int totalAmount() {
         int result = 0;
         for (var perf : invoice.performances) {
-            result += perf.amountFor(perf);
+            result += perf.amountFor();
         }
         return result;
     }
