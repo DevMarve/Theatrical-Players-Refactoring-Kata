@@ -13,13 +13,4 @@ public class Performance {
         this.audience = audience;
     }
 
-	public void setPlay(Play play) {
-		this.play = play;
-	}
-	public int amount() {
-        return amount;
-    }
-    public int volumeCredits() {
-        return volumeCredit;
-    }
 }

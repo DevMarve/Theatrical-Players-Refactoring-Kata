@@ -7,7 +7,7 @@ public record Data(String customer, java.util.List<Performance> performances, ja
 	public void enrichPerformances() {
 		performances.forEach(perf -> {
 			PerformanceCalculator calculator = new PerformanceCalculator(perf);
-			perf.setPlay(getPlay(perf));
+			perf.play = getPlay(perf);
 			perf.amount = calculator.amount();
 			perf.volumeCredit = calculator.volumeCredit();
 		});
@@ -15,7 +15,7 @@ public record Data(String customer, java.util.List<Performance> performances, ja
 	public int totalAmount() {
         int result = 0;
         for (var perf : performances) {
-            result += perf.amount();
+			result += perf.amount;
         }
         return result;
     }
@@ -23,7 +23,7 @@ public record Data(String customer, java.util.List<Performance> performances, ja
         int resul = 0;
         for (var perf : performances) {
             // add volume credits
-            resul += perf.volumeCredits();
+			resul += perf.volumeCredit;
         }
         return resul;
     }
