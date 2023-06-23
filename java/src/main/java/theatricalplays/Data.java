@@ -8,6 +8,7 @@ public record Data(String customer, java.util.List<Performance> performances, ja
 		performances.forEach(perf -> {
 			PerformanceCalculator calculator = new PerformanceCalculator(perf);
 			perf.setPlay(getPlay(perf));
+			perf.amount = 0;
 		});
 	}
 	public int totalAmount() {
