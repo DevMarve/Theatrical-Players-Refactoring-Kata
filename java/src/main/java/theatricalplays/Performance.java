@@ -6,6 +6,7 @@ public class Performance {
     public int audience;
 	public Play play;
     public int amount;
+    public int volumeCredit;
 
     public Performance(String playID, int audience) {
         this.playID = playID;
@@ -19,9 +20,6 @@ public class Performance {
         return amount;
     }
     public int volumeCredits() {
-        int result = Math.max(audience - 30, 0);
-        // add extra credit for every ten comedy attendees
-        if ("comedy".equals(play.type)) result += Math.floor(audience / 5);
-        return result;
+        return volumeCredit;
     }
 }
