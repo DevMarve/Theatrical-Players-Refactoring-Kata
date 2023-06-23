@@ -22,7 +22,7 @@ public class StatementPrinter {
         var result = String.format("Statement for %s\n", data.customer());
         for (var perf : data.performances()) {
             // print line for this order
-            result += String.format("  %s: %s (%s seats)\n", getPlay(perf).name, usd(amountFor(perf)), perf.audience);
+            result += String.format("  %s: %s (%s seats)\n", getPlay(perf).name, usd(perf.amountFor(perf)), perf.audience);
         }
 
         result += String.format("Amount owed is %s\n", usd(totalAmount()));
@@ -33,7 +33,7 @@ public class StatementPrinter {
     private int totalAmount() {
         int result = 0;
         for (var perf : invoice.performances) {
-            result += amountFor(perf);
+            result += perf.amountFor(perf);
         }
         return result;
     }
@@ -63,26 +63,6 @@ public class StatementPrinter {
         return result;
     }
 
-    private int amountFor(Performance aPerformance) {
-        int result;
-        switch (getPlay(aPerformance).type) {
-            case "tragedy":
-                result = 40000;
-                if (aPerformance.audience > 30) {
-                    result += 1000 * (aPerformance.audience - 30);
-                }
-                break;
-            case "comedy":
-                result = 30000;
-                if (aPerformance.audience > 20) {
-                    result += 10000 + 500 * (aPerformance.audience - 20);
-                }
-                result += 300 * aPerformance.audience;
-                break;
-            default:
-                throw new Error("unknown type: ${play.type}");
-        }
-        return result;
-    }
+
 
 }
