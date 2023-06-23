@@ -17,6 +17,8 @@ public record Data(String customer, java.util.List<Performance> performances, ja
 		switch (play.type) {
 			case "tragedy":
 				return new TragedyCalculator(perf);
+			case "comedy":
+				return new ComedyCalculator(perf);
 		}
 		return new PerformanceCalculator(perf);
 	}
