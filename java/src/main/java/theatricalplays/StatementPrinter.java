@@ -13,7 +13,7 @@ public class StatementPrinter {
         this.plays = plays;
         this.invoice = invoice;
 
-        Data data = new Data(invoice.customer, invoice.performances);
+        Data data = new Data(invoice.customer, invoice.performances, plays);
         return renderPlainText(data);
     }
 
