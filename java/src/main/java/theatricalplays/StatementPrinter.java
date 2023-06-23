@@ -14,6 +14,7 @@ public class StatementPrinter {
         this.invoice = invoice;
 
         Data data = new Data(invoice.customer, invoice.performances, plays);
+        data.enrichPerformances();
         return renderPlainText(data);
     }
 
