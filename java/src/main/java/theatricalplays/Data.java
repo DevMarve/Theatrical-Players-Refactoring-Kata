@@ -6,12 +6,21 @@ public record Data(String customer, java.util.List<Performance> performances, ja
 	}
 	public void enrichPerformances() {
 		performances.forEach(perf -> {
-			PerformanceCalculator calculator = new PerformanceCalculator(perf);
+			PerformanceCalculator calculator = createPerformanceCalculator(perf, getPlay(perf));
 			perf.play = getPlay(perf);
 			perf.amount = calculator.amount();
 			perf.volumeCredit = calculator.volumeCredit();
 		});
 	}
+
+	private static PerformanceCalculator createPerformanceCalculator(Performance perf, Play play) {
+		switch (play.type) {
+			case "tragedy":
+				return new TragedyCalculator(perf);
+		}
+		return new PerformanceCalculator(perf);
+	}
+
 	public int totalAmount() {
         int result = 0;
         for (var perf : performances) {
