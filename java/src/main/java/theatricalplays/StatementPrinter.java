@@ -26,20 +26,13 @@ public class StatementPrinter {
         }
 
         result += String.format("Amount owed is %s\n", usd(data.totalAmount()));
-        result += String.format("You earned %s credits\n", totalVolumeCredits());
+        result += String.format("You earned %s credits\n", data.totalVolumeCredits());
         return result;
     }
 
 
 
-    private int totalVolumeCredits() {
-        int resul = 0;
-        for (var perf : invoice.performances) {
-            // add volume credits
-            resul += perf.volumeCredits();
-        }
-        return resul;
-    }
+
 
     private static String usd(int amount) {
         String frmt = NumberFormat.getCurrencyInstance(Locale.US).format(amount/100);

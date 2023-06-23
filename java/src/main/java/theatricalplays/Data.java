@@ -16,4 +16,12 @@ public record Data(String customer, java.util.List<Performance> performances, ja
         }
         return result;
     }
+	public int totalVolumeCredits() {
+        int resul = 0;
+        for (var perf : performances) {
+            // add volume credits
+            resul += perf.volumeCredits();
+        }
+        return resul;
+    }
 }
