@@ -2,13 +2,13 @@ package theatricalplays;
 
 public record Data(String customer, java.util.List<Performance> performances, java.util.Map<String, Play> plays) {
 	private Play getPlay(Performance perf) {
-		return this.plays.get(perf.playID);
+		return this.plays.get(perf.getPlayID());
 	}
 	public void enrichPerformances() {
 		performances.forEach(perf -> {
 			PerformanceCalculator calculator = createPerformanceCalculator(perf, getPlay(perf));
-			perf.play = getPlay(perf);
-			perf.calculator = calculator;
+			perf.setPlay(getPlay(perf));
+			perf.setCalculator(calculator);
 		});
 	}
 

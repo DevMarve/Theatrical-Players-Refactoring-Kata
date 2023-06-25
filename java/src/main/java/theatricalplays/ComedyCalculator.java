@@ -9,20 +9,20 @@ public class ComedyCalculator implements PerformanceCalculator {
 
     @Override
     public int volumeCredit() {
-        return PerformanceCalculator.super.volumeCredit() + (int) Math.floor(performance.audience / 5);
+        return PerformanceCalculator.super.volumeCredit() + (int) Math.floor(performance.getAudience() / 5);
     }
 
     @Override
     public int getAudience() {
-        return performance.audience;
+        return performance.getAudience();
     }
 
     @Override
     public int amount() {
         int result = 30000;
-        if (performance.audience > 20) {
-            result += 10000 + 500 * (performance.audience - 20);
+        if (performance.getAudience() > 20) {
+            result += 10000 + 500 * (performance.getAudience() - 20);
         }
-        return result + 300 * performance.audience;
+        return result + 300 * performance.getAudience();
     }
 }

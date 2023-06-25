@@ -10,14 +10,14 @@ public class TragedyCalculator implements PerformanceCalculator {
 	@Override
 	public int amount() {
 		int result = 40000;
-		if (performance.audience > 30) {
-			result += 1000 * (performance.audience - 30);
+		if (performance.getAudience() > 30) {
+			result += 1000 * (performance.getAudience() - 30);
 		}
 		return result;
 	}
 
 	@Override
 	public int getAudience() {
-		return performance.audience;
+		return performance.getAudience();
 	}
 }
