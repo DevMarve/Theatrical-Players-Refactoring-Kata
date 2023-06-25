@@ -8,6 +8,7 @@ public record Data(String customer, java.util.List<Performance> performances, ja
 		performances.forEach(perf -> {
 			PerformanceCalculator calculator = createPerformanceCalculator(perf, getPlay(perf));
 			perf.play = getPlay(perf);
+			perf.calculator = calculator;
 			perf.amount = calculator.amount();
 			perf.volumeCredit = calculator.volumeCredit();
 		});
