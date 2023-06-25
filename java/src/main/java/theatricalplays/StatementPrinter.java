@@ -15,7 +15,7 @@ public class StatementPrinter {
         var result = String.format("Statement for %s\n", data.customer());
         for (var perf : data.performances()) {
             // print line for this order
-            result += String.format("  %s: %s (%s seats)\n", perf.play.name, usd(perf.amount), perf.audience);
+            result += String.format("  %s: %s (%s seats)\n", perf.play.name, usd(perf.calculateAmount()), perf.audience);
         }
 
         result += String.format("Amount owed is %s\n", usd(data.totalAmount()));

@@ -9,7 +9,6 @@ public record Data(String customer, java.util.List<Performance> performances, ja
 			PerformanceCalculator calculator = createPerformanceCalculator(perf, getPlay(perf));
 			perf.play = getPlay(perf);
 			perf.calculator = calculator;
-			perf.amount = calculator.amount();
 			perf.volumeCredit = calculator.volumeCredit();
 		});
 	}
@@ -27,7 +26,7 @@ public record Data(String customer, java.util.List<Performance> performances, ja
 	public int totalAmount() {
         int result = 0;
         for (var perf : performances) {
-			result += perf.amount;
+			result += perf.calculateAmount();
         }
         return result;
     }
