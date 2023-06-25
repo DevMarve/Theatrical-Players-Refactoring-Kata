@@ -9,7 +9,6 @@ public record Data(String customer, java.util.List<Performance> performances, ja
 			PerformanceCalculator calculator = createPerformanceCalculator(perf, getPlay(perf));
 			perf.play = getPlay(perf);
 			perf.calculator = calculator;
-			perf.volumeCredit = calculator.volumeCredit();
 		});
 	}
 
@@ -34,7 +33,7 @@ public record Data(String customer, java.util.List<Performance> performances, ja
         int resul = 0;
         for (var perf : performances) {
             // add volume credits
-			resul += perf.volumeCredit;
+			resul += perf.calculateVolumeCredit();
         }
         return resul;
     }

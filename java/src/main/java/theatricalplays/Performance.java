@@ -5,7 +5,6 @@ public class Performance {
     public String playID;
     public int audience;
 	public Play play;
-    public int volumeCredit;
     public PerformanceCalculator calculator;
 
     public Performance(String playID, int audience) {
@@ -15,5 +14,9 @@ public class Performance {
 
     public int calculateAmount() {
         return calculator.amount();
+    }
+
+    public int calculateVolumeCredit() {
+        return calculator.volumeCredit();
     }
 }
