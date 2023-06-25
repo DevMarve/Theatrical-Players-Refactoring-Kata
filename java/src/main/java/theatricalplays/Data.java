@@ -13,7 +13,7 @@ public record Data(String customer, java.util.List<Performance> performances, ja
 	}
 
 	private static PerformanceCalculator createPerformanceCalculator(Performance perf, Play play) {
-		switch (play.type) {
+		switch (play.getType()) {
 			case "tragedy":
 				return new TragedyCalculator(perf);
 			case "comedy":
