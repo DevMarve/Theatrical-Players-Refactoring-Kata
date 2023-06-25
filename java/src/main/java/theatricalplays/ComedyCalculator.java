@@ -1,6 +1,11 @@
 package theatricalplays;
 
 public class ComedyCalculator extends PerformanceCalculator {
+	@Override
+	public int volumeCredit() {
+		return super.volumeCredit() + (int) Math.floor(performance.audience / 5);
+	}
+
 	public ComedyCalculator(Performance perf) {
 		super(perf);
 	}
@@ -11,6 +16,6 @@ public class ComedyCalculator extends PerformanceCalculator {
 		if (performance.audience > 20) {
 			result += 10000 + 500 * (performance.audience - 20);
 		}
-		return result += 300 * performance.audience;
+		return result + 300 * performance.audience;
 	}
 }
