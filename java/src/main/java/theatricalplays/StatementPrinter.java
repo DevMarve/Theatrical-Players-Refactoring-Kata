@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class StatementPrinter {
 	public String print(Invoice invoice, Map<String, Play> plays) {
-		Data data = new Data(invoice.customer, invoice.performances, plays);
+		Data data = new Data(invoice.getCustomer(), invoice.getPerformances(), plays);
         data.enrichPerformances();
         return renderPlainText(data);
     }
