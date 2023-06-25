@@ -1,8 +1,10 @@
 package theatricalplays;
 
-public class TragedyCalculator extends PerformanceCalculator {
+public class TragedyCalculator implements PerformanceCalculator {
+	private final Performance performance;
+
 	public TragedyCalculator(Performance perf) {
-		super(perf);
+		this.performance = perf;
 	}
 
 	@Override
@@ -12,5 +14,10 @@ public class TragedyCalculator extends PerformanceCalculator {
 			result += 1000 * (performance.audience - 30);
 		}
 		return result;
+	}
+
+	@Override
+	public int getAudience() {
+		return performance.audience;
 	}
 }

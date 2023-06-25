@@ -20,7 +20,7 @@ public record Data(String customer, java.util.List<Performance> performances, ja
 			case "comedy":
 				return new ComedyCalculator(perf);
 		}
-		return new PerformanceCalculator(perf);
+		throw new Error("unknown type: ${play.type}");
 	}
 
 	public int totalAmount() {
